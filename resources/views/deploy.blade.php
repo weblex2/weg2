@@ -39,6 +39,7 @@
                 🚀 Deploy starten
             </button>
         </form>
+        <a href="http://192.168.178.91:8080/" target="_blank">PhpMyAdmin</a>
     </div>
 </body>
 
