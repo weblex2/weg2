@@ -10,7 +10,7 @@
 
 <body class="bg-gray-100 p-8">
     <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6">
-        <h1 class="text-2xl font-bold mb-6">🚀 Laravel Deployment</h1>
+        <h1 class="text-2xl font-bold mb-6">🚀 Laravel Deployment2</h1>
 
         @if (session('status'))
             <div
