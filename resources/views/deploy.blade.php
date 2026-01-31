@@ -39,7 +39,11 @@
                 🚀 Deploy starten
             </button>
         </form>
-        <a href="http://192.168.178.91:8080/" target="_blank">PhpMyAdmin</a>
+        <div>Links:</div>
+        <div><a href="http://192.168.178.91:8080/" target="_blank">PhpMyAdmin</a></div>
+        <div><a href="https://192.168.178.71:8006/" target="_blank">PiMox</a></div>
+
+
     </div>
 </body>
 
