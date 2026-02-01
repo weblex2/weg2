@@ -3,8 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeployController;
 use App\Http\Controllers\EmailImportController;
+use App\Http\Controllers\TileController;
+use App\Http\Controllers\ESP32DashboardController;
 
-Route::get('/', function () {
+
+Route::get('/', [TileController::class, 'index'])->name('dashboard.index');
+Route::post('/tiles', [TileController::class, 'store'])->name('tiles.store');
+Route::delete('/tiles/{tile}', [TileController::class, 'destroy'])->name('tiles.destroy');
+
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -37,4 +44,23 @@ Route::prefix('emails')->group(function () {
 
     // E-Mails auflisten (API)
     Route::get('/', [EmailImportController::class, 'list'])->name('emails.list');
+});
+
+
+
+Route::prefix('esp32')->name('esp32.')->group(function () {
+    // Dashboard
+    Route::get('/', [ESP32DashboardController::class, 'index'])->name('dashboard');
+
+    // Device Details
+    Route::get('/{id}', [ESP32DashboardController::class, 'show'])->name('show');
+
+    // Intervall Update
+    Route::put('/{id}', [ESP32DashboardController::class, 'update'])->name('update');
+
+    // Device aktivieren/deaktivieren
+    Route::post('/{id}/toggle', [ESP32DashboardController::class, 'toggleActive'])->name('toggle');
+
+    // Device löschen
+    Route::delete('/{id}', [ESP32DashboardController::class, 'destroy'])->name('destroy');
 });
