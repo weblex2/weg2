@@ -42,6 +42,8 @@
         <div>Links:</div>
         <div><a href="http://192.168.178.91:8080/" target="_blank">PhpMyAdmin</a></div>
         <div><a href="https://192.168.178.71:8006/" target="_blank">PiMox</a></div>
+        <div><a href="http://homeassistant.local:8123/" target="_blank">Home Assistant</a></div>
+        <div><a href="https://192.168.178.93" target="_blank">Pi Hole</a></div>
 
 
     </div>
