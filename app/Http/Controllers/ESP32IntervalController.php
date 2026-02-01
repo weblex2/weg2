@@ -108,34 +108,38 @@ class ESP32IntervalController extends Controller
         return response()->json($devices);
     }
 
+    // ESP32IntervalController.php
+
     public function register(Request $request)
     {
-        $validated = $request->validate([
-            'device_id' => 'required|string|max:64',
-            'hostname'  => 'nullable|string|max:255',
-            'firmware'  => 'nullable|string|max:50',
-            'mac'       => 'nullable|string|max:17',
-        ]);
-
+        $deviceId = $request->input('device_id');
+        $hostname = $request->input('hostname');
         $ipAddress = $request->ip();
 
+        if (!$deviceId || !$hostname) {
+            return response()->json(['error' => 'device_id and hostname required'], 400);
+        }
+
         $device = ESP32Device::updateOrCreate(
-            ['device_id' => $validated['device_id']],
+            ['device_id' => $deviceId],
             [
-                'hostname'   => $validated['hostname'] ?? null,
+                'hostname' => $hostname,
                 'ip_address' => $ipAddress,
-                'is_active'  => true,
-                'last_seen'  => now(),
+                'interval' => 3600,
+                'is_active' => true,
             ]
         );
 
+        $device->updateLastSeen();
+
         return response()->json([
-            'success'   => true,
-            'device_id'=> $device->device_id,
+            'success' => true,
+            'device_id' => $device->device_id,
+            'hostname' => $device->hostname,
             'interval' => $device->interval,
-            'server_time' => now()->toIso8601String(),
-            'message'  => 'Device registered'
+            'message' => 'Device registered successfully'
         ]);
     }
+
 
 }
