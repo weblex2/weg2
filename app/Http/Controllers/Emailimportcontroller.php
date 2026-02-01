@@ -47,7 +47,7 @@ class EmailImportController extends Controller
                 $request->input('limit'),
                 $request->input('unread_only', false),
                 $request->input('from')
-            );
+            ); 
 
             return response()->json([
                 'success' => true,
